@@ -1,0 +1,16 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# API keys & env
+.env
+
+# FAISS vector store
+/vector_store/
+
+# Streamlit temp
+.streamlit/
