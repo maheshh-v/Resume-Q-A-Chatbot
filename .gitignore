@@ -2,15 +2,13 @@
 .venv/
 venv/
 
-# Python cache
+.venv/
 __pycache__/
+*.pdf
 *.pyc
-
-# API keys & env
 .env
 
-# FAISS vector store
-/vector_store/
+vector_store/
 
-# Streamlit temp
-.streamlit/
+
+resume.pdf

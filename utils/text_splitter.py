@@ -1,7 +1,6 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 def split_text_into_chunks(text, chunk_size=800, chunk_overlap=80):
-    """Split the text into chunks for embedding"""
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap

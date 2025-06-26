@@ -4,6 +4,9 @@ from utils.text_splitter import split_text_into_chunks
 from utils.embed_store import create_faiss_index
 from utils.qa_chain import answer_question
 import os
+from dotenv import load_dotenv  # ✅ NEW
+
+load_dotenv()  # ✅ Load .env so your GPT-4 API key is available
 
 st.set_page_config(page_title="Smart Resume Q&A", layout="centered")
 
@@ -30,5 +33,6 @@ if uploaded_file:
     if query:
         with st.spinner("Searching and thinking..."):
             answer = answer_question(query)
-        st.markdown("### 🧠 Answer:")
+        st.markdown("### Answer:")
         st.write(answer)
+

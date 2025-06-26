@@ -1,7 +1,7 @@
 import os
 import faiss
 import pickle
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 
 

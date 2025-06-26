@@ -1,7 +1,6 @@
 import fitz  # PyMuPDF
 
 def extract_text_from_pdf(pdf_path):
-    """Extracts text from a PDF file"""
     text = ""
     with fitz.open(pdf_path) as doc:
         for page in doc:
