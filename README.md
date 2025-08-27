@@ -12,7 +12,7 @@ Built this to solve the problem of quickly extracting specific information from 
 
 ## 🎬 Demo
 
-![Demo GIF](demo.gif)
+![Demo GIF](assets/demo.gif)
 
 *Upload your resume and start asking questions instantly!*
 
@@ -67,7 +67,7 @@ echo "GROQ_API_KEY=your_groq_api_key" > .env
 streamlit run app.py
 ```
 
-## 📈 Future Roadmap
+##  Future Roadmap
 
 ### Stage 2: Enhanced Flexibility (Next Week)
 - **Multi-Model Support:** Dropdown to switch between Groq, HuggingFace models
@@ -89,7 +89,7 @@ streamlit run app.py
 - **API Integration:** OpenAI-compatible interface with Groq backend
 - **Error Resilience:** Comprehensive exception handling throughout pipeline
 
-## 📊 Performance
+##  Performance
 
 - **Response Time:** < 3 seconds for most queries
 - **Accuracy:** High relevance due to semantic search + context
