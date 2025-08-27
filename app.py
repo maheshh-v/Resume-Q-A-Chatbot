@@ -1,13 +1,12 @@
 import streamlit as st
-from utils.extract_text import extract_text_from_pdf
+from utils.text_extraction import extract_text_from_pdf
 from utils.text_splitter import split_text_into_chunks
-from utils.embed_store import create_faiss_index
+from utils.vector_store import create_faiss_index
 from utils.qa_chain import answer_question
 import os
-from dotenv import load_dotenv  # ✅ NEW
+from dotenv import load_dotenv  
 
-load_dotenv()  # ✅ Load .env so your GPT-4 API key is available
-
+load_dotenv()  # Load environment variables 
 st.set_page_config(page_title="Smart Resume Q&A", layout="centered")
 
 st.title("📄 Smart Resume Q&A Chatbot")
@@ -20,19 +19,19 @@ if uploaded_file:
     with open("resume.pdf", "wb") as f:
         f.write(uploaded_file.read())
 
-    st.success("✅ Resume uploaded and processed!")
+    st.success("Resume uploaded successfully!")
 
-    # Extract and embed
-    text = extract_text_from_pdf("resume.pdf")
-    chunks = split_text_into_chunks(text)
-    create_faiss_index(chunks)
+    # Process resume for Q&A
+    resume_text = extract_text_from_pdf("resume.pdf")
+    text_chunks = split_text_into_chunks(resume_text)
+    create_faiss_index(text_chunks)
 
     # Ask question
-    query = st.text_input("Ask a question about your resume:")
+    user_question = st.text_input("Ask a question about your resume:")
 
-    if query:
-        with st.spinner("Searching and thinking..."):
-            answer = answer_question(query)
+    if user_question:
+        with st.spinner("Analyzing resume..."):
+            response = answer_question(user_question)
         st.markdown("### Answer:")
-        st.write(answer)
+        st.write(response)
 

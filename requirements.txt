@@ -3,4 +3,5 @@ python-dotenv
 streamlit
 langchain
 sentence-transformers
-transformers
+PyMuPDF
+faiss-cpu
