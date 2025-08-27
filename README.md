@@ -12,7 +12,7 @@ Built this to solve the problem of quickly extracting specific information from 
 
 ## 🎬 Demo
 
-![Demo GIF](assets/demo2.gif)
+![Demo GIF](assets/resume.gif)
 
 *Upload your resume and start asking questions instantly!*
 
