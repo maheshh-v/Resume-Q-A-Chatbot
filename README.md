@@ -32,7 +32,7 @@ User Query → Vector Search → Context Retrieval → Groq LLaMA-4 → Answer
 
 - **Backend:** Python, LangChain
 - **Vector DB:** FAISS (local, fast)
-- **LLM:** Groq's LLaMA-4 (free, fast inference)
+- **LLM:** Groq's LLaMA-3 (free, fast inference)
 - **Embeddings:** HuggingFace Sentence Transformers
 - **PDF Processing:** PyMuPDF
 - **Frontend:** Streamlit
