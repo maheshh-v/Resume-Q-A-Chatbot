@@ -1,5 +1,7 @@
 # Smart Resume Q&A Chatbot
 
+## Intelligent Information Retrieval (IR) System using RAG & LLMs
+
 > **A production-ready RAG system that intelligently answers questions about your resume using advanced NLP techniques.**
 
 Built this to solve the problem of quickly extracting specific information from resumes during interviews and applications. Instead of manually searching through documents, just ask natural language questions and get instant, accurate answers.
