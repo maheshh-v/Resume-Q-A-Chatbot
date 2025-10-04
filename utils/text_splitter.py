@@ -8,3 +8,4 @@ def split_text_into_chunks(resume_text, chunk_size=800, chunk_overlap=80):
         chunk_overlap=chunk_overlap
     )
     return text_splitter.split_text(resume_text)
+

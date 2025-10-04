@@ -1,101 +1,75 @@
-# Smart Resume Q&A Chatbot
+# Resume Analyzer
 
-> **A production-ready RAG system that intelligently answers questions about your resume using advanced NLP techniques.**
+Built this to help recruiters search through multiple resumes quickly. Upload PDFs and either search across all of them or ask questions about specific candidates.
 
-Built this to solve the problem of quickly extracting specific information from resumes during interviews and applications. Instead of manually searching through documents, just ask natural language questions and get instant, accurate answers.
+**What you can do:**
+- "Which candidates know Python and machine learning?"
+- "Who has worked at tech companies?"
+- "Find someone with project management experience"
+- "Show me senior developers with cloud experience"
 
-**Try asking:**
-- "What programming languages do I know?"
-- "Where did I complete my education?"
-- "What projects have I worked on?"
-- "What are my key achievements?"
+## How to Run
 
-## 🎬 Demo
-
-![Demo GIF](demo.gif)
-
-*Upload your resume and start asking questions instantly!*
-
----
-
-## 🏗️ Architecture
-
-**RAG Pipeline:** PDF → Text Extraction → Chunking → Vector Embeddings → Semantic Search → LLM Generation
-
-```
-PDF Upload → PyMuPDF → LangChain Splitter → HuggingFace Embeddings → FAISS Index
-                                                                        ↓
-User Query → Vector Search → Context Retrieval → Groq LLaMA-4 → Answer
-```
-
-## 🛠️ Tech Stack
-
-- **Backend:** Python, LangChain
-- **Vector DB:** FAISS (local, fast)
-- **LLM:** Groq's LLaMA-4 (free, fast inference)
-- **Embeddings:** HuggingFace Sentence Transformers
-- **PDF Processing:** PyMuPDF
-- **Frontend:** Streamlit
-- **Deployment:** Local/Cloud ready
-
-## ⚡ Features
-
-- **Smart PDF Processing:** Handles complex resume layouts
-- **Semantic Search:** Finds relevant info even with different wording
-- **Context-Aware Answers:** Uses RAG for accurate, grounded responses
-- **Cost-Effective:** Uses free Groq API instead of expensive OpenAI
-- **Error Handling:** Robust validation and user-friendly error messages
-- **Professional UI:** Clean Streamlit interface
-
-## Quick Start
-
-1. **Clone & Install**
+1. **Install dependencies**
 ```bash
 git clone <repo-url>
 cd resume_qa_bot
 pip install -r requirements.txt
 ```
 
-2. **Setup API Key**
+2. **Set up API key**
 ```bash
 # Create .env file
 echo "GROQ_API_KEY=your_groq_api_key" > .env
 ```
 
-3. **Run**
+3. **Start the application**
 ```bash
 streamlit run app.py
 ```
 
-## 📈 Future Roadmap
+## Features
 
-### Stage 2: Enhanced Flexibility (Next Week)
-- **Multi-Model Support:** Dropdown to switch between Groq, HuggingFace models
-- **Advanced Error Handling:** Support password-protected PDFs, better validation
-- **UI/UX Improvements:** Better loading states, file preview
-- **Model Comparison:** Side-by-side answer comparison
+- Upload multiple PDF resumes at once
+- Search through all resumes to find matching candidates
+- Ask specific questions about individual resumes
+- Delete individual files or clear all at once
+- Session-based isolation for multiple users
 
-### Stage 3: Production-Grade RAG (Next Month)
-- **Reranker Integration:** Cohere/cross-encoder for better retrieval accuracy
-- **Advanced Retrieval:** Hybrid search (keyword + semantic)
-- **Performance Analytics:** Response time monitoring, accuracy metrics
-- **Scalability:** Support multiple documents, user sessions
+## Tech Stack
 
-##  Technical Highlights
+- **Backend:** Python, LangChain
+- **Database:** Pinecone vector database
+- **LLM:** Groq API
+- **Text Processing:** PyMuPDF, Sentence Transformers
+- **Frontend:** Streamlit
 
-- **RAG Architecture:** Implemented end-to-end retrieval-augmented generation
-- **Vector Search:** FAISS for sub-second semantic similarity search
-- **Chunking Strategy:** Optimized 800-char chunks with 80-char overlap
-- **API Integration:** OpenAI-compatible interface with Groq backend
-- **Error Resilience:** Comprehensive exception handling throughout pipeline
+## How It Works
 
-## 📊 Performance
+1. Upload PDF resumes
+2. Text gets extracted and stored in Pinecone vector database
+3. Two search modes:
+   - **Search all resumes:** Find candidates matching job requirements
+   - **Single resume Q&A:** Ask questions about one specific person
 
-- **Response Time:** < 3 seconds for most queries
-- **Accuracy:** High relevance due to semantic search + context
-- **Cost:** $0 (using free Groq API)
-- **Scalability:** Handles resumes up to 50+ pages
+## Technical Details
 
----
+**RAG Pipeline:**
+- Text extraction from PDFs using PyMuPDF
+- Chunking with LangChain (800 chars, 80 overlap)
+- Vector embeddings via Sentence Transformers
+- Pinecone storage with session-based namespaces
+- MMR retrieval for diverse results across resumes
+- Cross-encoder reranking for precision
+- Groq LLaMA-3.1 for final synthesis
 
-**Built with ❤️ for efficient resume analysis and interview preparation.**
+**Key Implementation Decisions:**
+- Used MMR to prevent single resume bias in search results
+- Added reranker to improve context quality before LLM
+- Session namespaces ensure user data isolation
+
+## Notes
+
+- Uses Pinecone for vector storage (free tier works fine)
+- Groq API for LLM responses (faster and free compared to OpenAI)
+- Supports large resumes (tested up to 50+ pages)

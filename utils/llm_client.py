@@ -1,4 +1,3 @@
-
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -20,7 +19,7 @@ def ask_groq(prompt):
             return "Please provide a valid question."
         
         response = client.chat.completions.create(
-            model="llama3-8b-8192",  # Using Groq's LLaMA 3 model
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that answers questions about resumes."},
                 {"role": "user", "content": prompt}
@@ -29,5 +28,4 @@ def ask_groq(prompt):
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
-        return f"Sorry, I couldn't process your request. Please try again. Error: {str(e)}"
-    
+        return "Sorry, couldn't process your request. Please try again."
