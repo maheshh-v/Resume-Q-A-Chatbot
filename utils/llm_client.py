@@ -1,13 +1,17 @@
-
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
+import streamlit as st
 
 load_dotenv()
 
-api_key = os.getenv("GROQ_API_KEY")
+try:
+    api_key = st.secrets["GROQ_API_KEY"]
+except Exception:
+    api_key = os.getenv("GROQ_API_KEY")
+
 if not api_key:
-    raise ValueError("GROQ_API_KEY not found in environment variables")
+    raise ValueError("GROQ_API_KEY not found")
 
 client = OpenAI(
     api_key=api_key,
@@ -20,14 +24,14 @@ def ask_groq(prompt):
             return "Please provide a valid question."
         
         response = client.chat.completions.create(
-            model="llama3-8b-8192",  # Using Groq's LLaMA 3 model
+            model="llama-3.1-8b-instant",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant that answers questions about resumes."},
+                {"role": "system", "content": "Answer questions about resumes based on the provided context."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.3
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
-        return f"Sorry, I couldn't process your request. Please try again. Error: {str(e)}"
-    
+        print(f"Error in ask_groq: {e}")
+        return f"Error: {str(e)}"

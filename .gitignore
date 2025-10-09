@@ -1,14 +1,9 @@
-# Virtual environment
-.venv/
-venv/
-
-.venv/
-__pycache__/
-*.pdf
-*.pyc
 .env
-
+__pycache__/
+*.pyc
+venv/
+.venv/
 vector_store/
-
-
-resume.pdf
+*.pdf
+.DS_Store
+.vscode/
