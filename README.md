@@ -1,56 +1,58 @@
 # Resume Analyzer
 
-Built this to help recruiters search through multiple resumes quickly. Upload PDFs and either search across all of them or ask questions about specific candidates.
+A RAG-based application to help recruiters search through multiple resumes efficiently. Upload PDF resumes and search across all of them or ask questions about specific candidates.
+
+**[Watch Demo](https://youtu.be/y-PEmwMbuWk)**
 
 **Example queries:**
 - "Which candidates know Python and machine learning?"
-- "Who has worked at tech companies?"
-- "Find someone with project management experience"
-- "Show me senior developers with cloud experience"
+- "Who has experience at tech companies?"
+- "Find someone with project management skills"
+- "Show me developers with cloud experience"
 
-## Setup
+## Installation
 
 ```bash
-git clone <repo-url>
-cd resume_qa_bot
+git clone https://github.com/maheshh-v/Resume-Q-A-Chatbot.git
+cd Resume-Q-A-Chatbot
 pip install -r requirements.txt
 ```
 
-Create a `.env` file:
+Create `.env` file in the root directory:
 ```
-GROQ_API_KEY=your_groq_api_key
-PINECONE_API_KEY=your_pinecone_api_key
+GROQ_API_KEY=your_api_key_here
+PINECONE_API_KEY=your_api_key_here
 ```
 
-Run the app:
+Start the application:
 ```bash
 streamlit run app.py
 ```
 
 ## Features
 
-- Upload multiple PDF resumes
-- Search across all resumes or query individual candidates
-- Session-based isolation
-- File size validation (10MB limit)
-- Empty PDF detection
+- Multi-file PDF upload support
+- Cross-resume search with candidate comparison
+- Individual resume Q&A
+- Session isolation for concurrent users
+- File validation (10MB limit, empty PDF detection)
 
 ## Tech Stack
 
-Python • Streamlit • Pinecone • Groq API • Sentence Transformers • PyMuPDF
+Python • Streamlit • LangChain • Pinecone • Groq API • Sentence Transformers • PyMuPDF
 
-## Architecture
+## How It Works
 
-The app uses a RAG (Retrieval-Augmented Generation) pipeline:
+RAG pipeline implementation:
 
-- PDFs are extracted and chunked (800 chars, 80 overlap)
-- Text chunks are embedded using Sentence Transformers (all-MiniLM-L6-v2)
-- Vectors stored in Pinecone with namespace isolation per session
-- Multi-resume search uses cross-encoder reranking to improve precision
-- Groq LLaMA-3.1 generates final responses
+- PDF text extraction and chunking (800 char chunks, 80 char overlap)
+- Embeddings generated using Sentence Transformers (all-MiniLM-L6-v2)
+- Vector storage in Pinecone with session-based namespace isolation
+- Cross-encoder reranking for improved multi-resume search accuracy
+- Response generation via Groq LLaMA-3.1
 
 ## Notes
 
-- Free tier Pinecone and Groq API work fine for testing
-- Tested with resumes up to 50+ pages
-- Session namespaces prevent data leakage between users
+- Compatible with Pinecone and Groq free tiers
+- Handles large resumes (tested up to 50+ pages)
+- Namespace isolation ensures user data privacy
